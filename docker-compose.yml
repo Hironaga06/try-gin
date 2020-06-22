@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: try_gin
+    environment:
+      GO111MODULE: "on"
+    tty: true
+    volumes:
+      - .:/go/src/try_gin
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    command: |
+      tail -f /dev/null
+  db:
+    image: mysql:latest
+    container_name: try_gin_db
+    environment:
+      TZ: "Asia/Tokyo"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
