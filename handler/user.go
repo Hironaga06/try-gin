@@ -7,9 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Hoge() gin.HandlerFunc {
-	hoges := service.All()
+func Users() gin.HandlerFunc {
+	users := service.All()
 	return func(c *gin.Context) {
-		c.JSON(http.StatusOK, hoges)
+		c.JSON(http.StatusOK, users)
 	}
 }

@@ -18,7 +18,7 @@ func main() {
 	defer db.Close()
 
 	router := gin.Default()
-	router.GET("/", handler.Hoge())
+	router.GET("/", handler.Users())
 	router.Run(":8080")
 }
 
