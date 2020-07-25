@@ -3,3 +3,8 @@ host:
 build:
   env:
     GO111MODULE: 'on'
+watch:
+  root: .
+  ignore:
+    - migrations
+    - script
