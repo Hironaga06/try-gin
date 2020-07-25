@@ -4,20 +4,18 @@ import (
 	"fmt"
 	"try_gin/model"
 	"try_gin/request"
+
+	"github.com/jinzhu/gorm"
 )
 
-func All() []*model.User {
-	users := []*model.User{}
-
-	users = append(users, &model.User{
-		ID:   1,
-		Name: "山田太郎",
-	})
+func FindAll(db *gorm.DB) *model.Users {
+	users := &model.Users{}
+	db.Find(users)
 
 	return users
 }
 
-func Set(req *request.User) {
+func Set(db *gorm.DB, req *request.User) {
 	user := &model.User{
 		ID:   req.ID,
 		Name: req.Name,

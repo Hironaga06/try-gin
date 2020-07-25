@@ -18,8 +18,8 @@ func main() {
 	defer db.Close()
 
 	router := gin.Default()
-	router.GET("/", handler.Users())
-	router.POST("/users", handler.SetUser())
+	router.GET("/", handler.Users(db))
+	router.POST("/users", handler.SetUser(db))
 	router.Run(":8080")
 }
 

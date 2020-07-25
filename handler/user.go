@@ -6,20 +6,21 @@ import (
 	"try_gin/service"
 
 	"github.com/gin-gonic/gin"
+	"github.com/jinzhu/gorm"
 )
 
-func Users() gin.HandlerFunc {
-	users := service.All()
+func Users(db *gorm.DB) gin.HandlerFunc {
+	users := service.FindAll(db)
 	return func(c *gin.Context) {
 		c.JSON(http.StatusOK, users)
 	}
 }
 
-func SetUser() gin.HandlerFunc {
+func SetUser(db *gorm.DB) gin.HandlerFunc {
 	req := &request.User{}
 	return func(c *gin.Context) {
 		c.Bind(req)
-		service.Set(req)
+		service.Set(db, req)
 		c.Status(http.StatusNoContent)
 	}
 }
