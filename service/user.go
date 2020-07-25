@@ -1,6 +1,10 @@
 package service
 
-import "try_gin/model"
+import (
+	"fmt"
+	"try_gin/model"
+	"try_gin/request"
+)
 
 func All() []*model.User {
 	users := []*model.User{}
@@ -11,4 +15,12 @@ func All() []*model.User {
 	})
 
 	return users
+}
+
+func Set(req *request.User) {
+	user := &model.User{
+		ID:   req.ID,
+		Name: req.Name,
+	}
+	fmt.Printf("set user: %+v\n", user)
 }
