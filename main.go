@@ -24,7 +24,7 @@ func main() {
 }
 
 func initDB() (*gorm.DB, error) {
-	db, err := gorm.Open("postgres", "host=postgres port=5432 user=postgres dbname=postgres sslmode=disable password=")
+	db, err := gorm.Open("postgres", "host=postgres port=5432 user=postgres dbname=postgres password=postgres sslmode=disable")
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}

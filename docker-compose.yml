@@ -4,14 +4,17 @@ services:
   postgres:
     image: postgres:latest
     container_name: postgres
+    ports:
+      - "5432:5432"
     environment:
-      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
-      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=C"
   app:
     build: .
     container_name: app
     environment:
       GO111MODULE: "on"
+      TZ: "Asia/Tokyo"
     tty: true
     volumes:
       - .:/go/src/try_gin
