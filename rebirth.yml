@@ -1,2 +1,5 @@
 host:
-  docker: try_gin
+  docker: app
+build:
+  env:
+    GO111MODULE: 'on'

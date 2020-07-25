@@ -1,23 +1,23 @@
 version: '3'
 
 services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+      POSTGRES_HOST_AUTH_METHOD: trust
   app:
     build: .
-    container_name: try_gin
+    container_name: app
     environment:
       GO111MODULE: "on"
     tty: true
     volumes:
       - .:/go/src/try_gin
     ports:
-      - "8000:8000"
+      - "8080:8080"
     depends_on:
-      - db
+      - postgres
     command: |
       tail -f /dev/null
-  db:
-    image: mysql:latest
-    container_name: try_gin_db
-    environment:
-      TZ: "Asia/Tokyo"
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
