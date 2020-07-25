@@ -13,7 +13,8 @@ import (
 )
 
 const (
-	schemaPath  = "/migrations/schema"
+	schemaPath = "/migrations/schema"
+	// Mac上から実行する場合は、host名を0.0.0.0にする
 	databaseURL = "postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable"
 )
 
@@ -51,8 +52,6 @@ func main() {
 	applyQuery(m, version, dirty)
 }
 
-//exec up or down sqls
-//with force option if needed
 func applyQuery(m *migrate.Migrate, version uint, dirty bool) {
 	if dirty && *force {
 		fmt.Println("force=true: force execute current version sql")
