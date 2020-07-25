@@ -1,7 +1,7 @@
 package main
 
 import (
-	"net/http"
+	"try_gin/handler"
 
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
@@ -18,14 +18,12 @@ func main() {
 	defer db.Close()
 
 	router := gin.Default()
-	router.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "Hello World")
-	})
+	router.GET("/", handler.Hoge())
 	router.Run(":8080")
 }
 
 func initDB() (*gorm.DB, error) {
-	db, err := gorm.Open("postgres", "host=postgres port=5432 user=postgres dbname=postgres password= sslmode=disable")
+	db, err := gorm.Open("postgres", "host=postgres port=5432 user=postgres dbname=postgres sslmode=disable password=")
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
