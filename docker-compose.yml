@@ -22,9 +22,10 @@ services:
       TZ: "Asia/Tokyo"
       DATABASE_URL: "postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable"
       GIN_MODE: debug
+      PORT: 8080
     tty: true
     volumes:
-      - ../:/try_gin
+      - .:/go/src/try_gin
     ports:
       - "8080:8080"
     depends_on:
