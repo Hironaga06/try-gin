@@ -22,7 +22,7 @@ services:
       TZ: "Asia/Tokyo"
     tty: true
     volumes:
-      - .:/go/src/try_gin
+      - ../:/try_gin
     ports:
       - "8080:8080"
     depends_on:

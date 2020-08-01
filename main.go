@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"try_gin/handler"
 
 	"github.com/gin-gonic/gin"
@@ -18,7 +19,7 @@ func main() {
 	router := gin.Default()
 	router.GET("/", handler.Users(db))
 	router.POST("/users", handler.SetUser(db))
-	router.Run(":8080")
+	router.Run(":" + os.Getenv("PORT"))
 }
 
 func init() {

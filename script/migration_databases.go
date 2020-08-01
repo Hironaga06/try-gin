@@ -12,11 +12,7 @@ import (
 	"github.com/ngaut/log"
 )
 
-const (
-	schemaPath = "/migrations/schema"
-	// Mac上から実行する場合は、host名を0.0.0.0にする
-	databaseURL = "postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable"
-)
+const schemaPath = "/migrations/schema"
 
 var (
 	command               = flag.String("exec", "", "set up or down as a argument")
@@ -40,7 +36,7 @@ func main() {
 		fmt.Println(err)
 	}
 
-	m, err := migrate.New("file:"+currentDir+schemaPath, databaseURL)
+	m, err := migrate.New("file:"+currentDir+schemaPath, os.Getenv("DATABASE_URL"))
 	if err != nil {
 		fmt.Println(err)
 	}

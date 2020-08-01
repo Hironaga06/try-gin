@@ -1,11 +1,22 @@
-FROM golang:1.14.4-alpine
+FROM golang:1.14.4-alpine as builder
 
-RUN mkdir /go/src/try_gin \
-    && apk update \
+RUN apk update \
     && apk upgrade \
-    && apk add --no-cache bash postgresql-client tzdata
+    && apk add --no-cache bash curl postgresql-client tzdata
 
-WORKDIR /go/src/try_gin
-ADD . /go/src/try_gin
+WORKDIR /try_gin
+COPY go.mod .
+COPY go.sum .
 
-CMD ["/bin/bash", "script/init_db.sh"]
+RUN go mod download
+COPY . .
+
+RUN GOOS=linux GOARCH=amd64 go build -o /main
+
+FROM alpine:latest
+
+COPY --from=builder /main .
+
+ENV PORT=${PORT}
+
+ENTRYPOINT ["/main"]
