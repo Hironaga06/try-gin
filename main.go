@@ -24,7 +24,7 @@ func main() {
 
 func init() {
 	var err error
-	db, err = gorm.Open(os.Getenv("DATABASE_URL"))
+	db, err = gorm.Open("postgres", os.Getenv("DATABASE_URL"))
 	if err != nil {
 		panic(errors.Trace(err))
 	}
