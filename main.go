@@ -28,4 +28,5 @@ func init() {
 	if err != nil {
 		panic(errors.Trace(err))
 	}
+	gin.SetMode(os.Getenv("GIN_MODE"))
 }

@@ -20,6 +20,8 @@ services:
     environment:
       GO111MODULE: "on"
       TZ: "Asia/Tokyo"
+      DATABASE_URL: "postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable"
+      GIN_MODE: debug
     tty: true
     volumes:
       - ../:/try_gin
