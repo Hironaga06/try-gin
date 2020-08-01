@@ -24,7 +24,7 @@ func main() {
 
 func init() {
 	var err error
-	db, err = gorm.Open("postgres", "host=postgres port=5432 user=postgres dbname=postgres password=postgres sslmode=disable")
+	db, err = gorm.Open(os.Getenv("DATABASE_URL"))
 	if err != nil {
 		panic(errors.Trace(err))
 	}
