@@ -7,4 +7,4 @@ build:
 release:
   image: worker
   command:
-    - bash init_db.sh
+    - bash script/init_db.sh
